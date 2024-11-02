@@ -1,10 +1,10 @@
 import chalk from 'chalk';
-import prompt from 'prompt-sync'
-import aTarea from './index.js';
+import prompt from 'prompt-sync';
+import aTarea from './indexviejo.js';
 //import { mostrarTareas } from './ruta/al/archivo/tareas';
 
-const leer = prompt();
 export default  function cl(indice) {
+    let leer = prompt();
     switch (indice) {
         case "1"://Menu Main
             console.log("******************************");
@@ -58,8 +58,8 @@ export default  function cl(indice) {
             console.log("Escriba el titulo o una palabra clave del titulo de tarea a buscar o [ENTER] para volver\n")
             break;
         case "9":
-            return leer(`>`);
-            break;
+            let a = leer(">");
+            return a;
         case "10":
             console.log("El titulo no puede estar vacío.\nVuelva a intentarlo.");
             break;
@@ -122,7 +122,7 @@ export default  function cl(indice) {
             console.log("Enter para continuar, cualquier otra tecla para volver al menu");
             break;
 
-        /*case "30": ///En curso
+        /*case "28": ///En curso
 
             const estadoDeseado = "E";
             const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
@@ -139,7 +139,7 @@ export default  function cl(indice) {
             })
             break;
 
-        case "40": /// Terminadas
+        case "29": /// Terminadas
 
             const estadoDeseado = "T";
             const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
@@ -157,7 +157,7 @@ export default  function cl(indice) {
 
             });
             break;
-        case "41": //Canceladas
+        case "30": //Canceladas
             {
                 const estadoDeseado = "C";
                 const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
@@ -175,7 +175,7 @@ export default  function cl(indice) {
 
                 });
                 break;
-        case "42": /// Pendientes
+        case "31": /// Pendientes
 
             const estadoDeseado = "P";
             const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
@@ -194,19 +194,24 @@ export default  function cl(indice) {
             }); */
             break;
         case "50": ///Todas las tareas
-            const tareas = mostrarTareas(aTarea,);
             console.log("Todas las Tareas:");
-            tareas.forEach(tarea => {
-                console.log("Título:", tarea.titulo);
-                console.log("Descripción:", tarea.descripcion);
-                console.log("Dificultad:", tarea.dificultad);
-                console.log("Fecha de Creación:", tarea.fechaCreacion);
-                console.log("Fecha de Modificación:", tarea.fechaModificacion);
-                console.log("Fecha de Vencimiento:", tarea.fechaVencimiento);
-                console.log("Estado:", tarea.estado);
+            aTarea.forEach(aTarea => {
+                console.log("Título:", aTarea.titulo);
+                console.log("Descripción:", aTarea.descripcion);
+                console.log("Dificultad:", aTarea.dificultad);
+                console.log("Fecha de Creación:", aTarea.fechaCreacion);
+                console.log("Fecha de Modificación:", aTarea.fechaModificacion);
+                console.log("Fecha de Vencimiento:", aTarea.fechaVencimiento);
+                console.log("Estado:", aTarea.estado);
                 console.log("---------------");
             });
             break;
+            case "51":
+                console.error("Opción inválida");
+                break;
+            case "52":
+                console.error("No hay tareas cargadas...");
+                break;
 
 
 
