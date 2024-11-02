@@ -1,10 +1,10 @@
 import promptSync from 'prompt-sync';
-import print from './ConsoleLog.js';
+import cl from './ConsoleLog.js';
 const leer = promptSync();
 
 export default function pausa() { 
     this.run = function () {
-        print("5");
+        cl("5");
         leer();
     };
 }

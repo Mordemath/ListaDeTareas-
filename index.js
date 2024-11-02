@@ -1,53 +1,58 @@
-import prompt from 'prompt-sync';
-import print from 'print';
 import tarea from './tarea.js';
-import tarea from './tarea2.js';
-
-import mientras, { crearVencimiento } from './CrearAtributo.js';
-import { crearDificultad } from './crearTitulo.js';
-this.fechaHoy = new Date();
-this.fechaActual = this.fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
+import CrearTitulo from './CrearAtributo.js';
+import CrearDescripcion from './CrearAtributo.js';
+import CrearDificultad from './CrearAtributo.js';
+import CrearEstado from './CrearAtributo.js';
+import CrearVencimiento from './CrearAtributo.js';
+import cl from './ConsoleLog.js';
+fechaHoy = new Date();
+fechaActual = this.fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
 const leer = prompt();
 let op;
 let aTarea = [];
 export default aTarea;
 
 while (op != "0") {
-    print("1");//menu
+    cl("1");//menu
     switch (op) {
         case "1":
             {
 
-                print("2");
+                cl("2");
                 op = Scannf(`>`);
                 switch (op) {
                     case "1": {
-
+                        cl("50");
 
 
                         break;
                     }
                     case "2":
                         {
+                            cl("42");
                             break;
                         }
                     case "3":
                         {
+                            cl("30");
                             break;
                         }
                     case "4":
                         {
+                            
+                            
+                            cl("40");
                             break;
                         }
                     case "0":
                         {
-                            print("5");
+                            cl("5");
                             break;
 
                         }
                     default:
                         {
-                            print("6");
+                            cl("6");
                             break;
                         }
 
@@ -58,24 +63,24 @@ while (op != "0") {
         case "2":
             {
 
-                print("3");
+                cl("3");
                 op = Scannf(`>`);
                 switch (op) {
                     case "1": {
-                        print("8");
+                        cl("8");
 
                         break;
                     }
                     case "0":
                         {
 
-                            print("5");
+                            cl("5");
                             break;
 
                         }
                     default:
                         {
-                            print("6");
+                            cl("6");
                             break;
                         }
 
@@ -86,47 +91,47 @@ while (op != "0") {
         case "3":
             {
 
-                print("15");
-                let titulo = creartitulo(print("9"));
+                cl("15");
+                let titulo = CrearTitulo(cl("9"));
                 if (titulo == "1") {
-                    print("26");
+                    cl("26");
                     break;
                 }
 
-                print("17");
-                let descripcion = crearDescripcion(print("9"));
+                cl("17");
+                let descripcion = CrearDescripcion(cl("9"));
                 if (descripcion == "1") {
-                    print("26");
-                    print("27");
-                    if (print("9") == "1") {
+                    cl("26");
+                    cl("27");
+                    if (cl("9") == "1") {
                         break;
                     }
                 }
-                print("16");
-                let estado = crearEstado(print("9"));
+                cl("16");
+                let estado = CrearEstado(cl("9"));
                 if (estado == "1") {
-                    print("26");
-                    print("27");
-                    if (print("9") == "1") {
+                    cl("26");
+                    cl("27");
+                    if (cl("9") == "1") {
                         break;
                     }
                 }
 
-                let vencimiento = crearVencimiento();
+                let vencimiento = CrearVencimiento();
                 if(vencimiento == "1"){
-                    print("26");
-                    print("27");
-                    if (print("9") == "1") {
+                    cl("26");
+                    cl("27");
+                    if (cl("9") == "1") {
                         break;
                     }
                 }
 
-                print("25");
-                let dificultad = crearDificultad(print("9"));
+                cl("25");
+                let dificultad = CrearDificultad(cl("9"));
                 if(dificultad == "1"){
-                    print("26");
-                    print("27");
-                    if (print("9") == "1") {
+                    cl("26");
+                    cl("27");
+                    if (cl("9") == "1") {
                         break;
                     }
                 }
@@ -141,12 +146,12 @@ while (op != "0") {
             {
 
 
-                print("5");
+                cl("5");
                 break;
             }
         default:
             {
-                print("6");
+                cl("6");
                 break;
             }
     }

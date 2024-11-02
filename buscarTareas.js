@@ -1,4 +1,4 @@
-import print from './print'
+import cl from './ConsoleLog.js';
 import pausa from './pause.js'
 import mostrarDetalles from './mostrarDetalles.js';
 
@@ -32,17 +32,17 @@ export default function(){
                 return ["No se encuentran resultados."];
                 break;
             case '1':
-                let clave = print("9");
+                let clave = cl("9");
                 if(clave!==''){
                     let indicesEncontrados=buscar(tareas,clave,0,[]);
                     if(indicesEncontrados.length===0){
-                        return print("6");
+                        return cl("6");
                     }else{
                         for(let i=0;i<indicesEncontrados.length;i++){
                             mostrarDetalles(tareas[indicesEncontrados[j]]);
                         }
-                        print("12");
-                        return print("13");
+                        cl("12");
+                        return cl("13");
                     }
                 }
                 break;

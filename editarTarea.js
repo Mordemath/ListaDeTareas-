@@ -1,4 +1,4 @@
-import print from './print'
+import cl from './ConsoleLog.js';
 import pausa from './pause.js'
 import mostrarDetalles from './mostrarDetalles.js';
 
