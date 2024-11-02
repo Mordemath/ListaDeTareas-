@@ -83,7 +83,7 @@ export default  function cl(indice) {
             break;
         case "15":
             console.log("ingrese el titulo  de la tarea o [ENTER] para cancelar");
-            console.log("El titulo no puede estar vacío ni superar los 100 caracteres.\nVuelva a intentarlo.");
+            console.log("El titulo no puede estar vacío ni superar los 100 caracteres.\n");
             break;
         case "16":
             console.log(`[] Ingresa el estado o solo [Enter] para dejarlo en default(pendiente):\n([P]endiente) / [E]n curso / [T]erminada / [C]ancelada:`);

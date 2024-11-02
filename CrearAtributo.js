@@ -68,7 +68,7 @@ export function CrearVencimiento() {
     return vencimiento;
 }
 
-export function CrearDifiultad(value) {
+export function CrearDificultad(value) {
     let dificultad = value;
 
     switch (dificultad) {

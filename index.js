@@ -1,19 +1,20 @@
 import tarea from './tarea.js';
-import CrearTitulo from './CrearAtributo.js';
-import CrearDescripcion from './CrearAtributo.js';
-import CrearDificultad from './CrearAtributo.js';
-import CrearEstado from './CrearAtributo.js';
-import CrearVencimiento from './CrearAtributo.js';
+import { CrearTitulo, CrearDescripcion, CrearDificultad, CrearEstado, CrearVencimiento } from './CrearAtributo.js';
 import cl from './ConsoleLog.js';
-fechaHoy = new Date();
-fechaActual = this.fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
-const leer = prompt();
+import prompt from 'prompt-sync'
+import pause from './pause.js';
+let pausa = pause();
+
+let fechaHoy = new Date();
+let fechaActual = fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
+let Scannf = prompt();
 let op;
 let aTarea = [];
 export default aTarea;
 
 while (op != "0") {
     cl("1");//menu
+    op = cl("9");
     switch (op) {
         case "1":
             {
@@ -39,8 +40,8 @@ while (op != "0") {
                         }
                     case "4":
                         {
-                            
-                            
+
+
                             cl("40");
                             break;
                         }
@@ -118,7 +119,7 @@ while (op != "0") {
                 }
 
                 let vencimiento = CrearVencimiento();
-                if(vencimiento == "1"){
+                if (vencimiento == "1") {
                     cl("26");
                     cl("27");
                     if (cl("9") == "1") {
@@ -128,7 +129,7 @@ while (op != "0") {
 
                 cl("25");
                 let dificultad = CrearDificultad(cl("9"));
-                if(dificultad == "1"){
+                if (dificultad == "1") {
                     cl("26");
                     cl("27");
                     if (cl("9") == "1") {
@@ -154,5 +155,6 @@ while (op != "0") {
                 cl("6");
                 break;
             }
+
     }
 }
