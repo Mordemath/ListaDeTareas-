@@ -16,7 +16,9 @@ export function CrearTitulo() {
 export function CrearDescripcion() {
     cl("17");
     let descripcion = cl("9");
-
+    if (descripcion.length > 100) {
+        return "1";
+    }
     return descripcion;
 }
 

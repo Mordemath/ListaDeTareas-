@@ -58,7 +58,7 @@ function main() {
                         console.log("Se realizo un cambio");
                     }
                     break;
-                case "0":
+                case "0"://Mostrar Tareas canceladas
                     auxiliarArray = canceladas(aTarea);
                     if (auxiliarArray) {
                         aTarea = auxiliarArray;
