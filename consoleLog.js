@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import prompt from 'prompt-sync';
 import aTarea from './indexviejo.js';
+import Tarea from './tarea.js'
 //import { mostrarTareas } from './ruta/al/archivo/tareas';
 
 export default  function cl(indice) {
@@ -196,13 +197,13 @@ export default  function cl(indice) {
         case "50": ///Todas las tareas
             console.log("Todas las Tareas:");
             aTarea.forEach(aTarea => {
-                console.log("Título:", aTarea.titulo);
-                console.log("Descripción:", aTarea.descripcion);
-                console.log("Dificultad:", aTarea.dificultad);
-                console.log("Fecha de Creación:", aTarea.fechaCreacion);
-                console.log("Fecha de Modificación:", aTarea.fechaModificacion);
-                console.log("Fecha de Vencimiento:", aTarea.fechaVencimiento);
-                console.log("Estado:", aTarea.estado);
+                console.log(`Título:  ${aTarea.titulo}`);
+                console.log(`Descripción:  ${aTarea.descripcion}`);
+                console.log(`Dificultad:  ${aTarea.dificultad}`);
+                console.log(`Fecha de Creación:  ${aTarea.creacion}`);
+                console.log(`Fecha de Modificación: ${aTarea.ultimaEd}`);
+                console.log(`Fecha de Vencimiento:  ${aTarea.vencimiento}`);
+                console.log(`Estado:  ${aTarea.estado}`);
                 console.log("---------------");
             });
             break;

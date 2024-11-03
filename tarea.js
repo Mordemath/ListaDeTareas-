@@ -1,11 +1,11 @@
-export default class tarea {
-    tarea(titulo, estado, descripcion, vencimiento, dificultad, ultimaed, creacion){
+export default class Tarea {
+    constructor(titulo, estado, descripcion, vencimiento, dificultad, ultimaEd, creacion) {
         this.titulo = titulo;
         this.estado = estado;
-        this.descripción = descripcion;
+        this.descripcion = descripcion; 
         this.vencimiento = vencimiento;
         this.dificultad = dificultad;
-        this.ultimaEd = ultimaed;
-        this.creación = creacion;
+        this.ultimaEd = ultimaEd; 
+        this.creacion = creacion; 
     }
-}
+    }

@@ -4,19 +4,16 @@ export function CrearTitulo(value) {
     if (titulo === "" || titulo === null || titulo.length > 100) {
         return "1";
     }
-    else{
-        return titulo;
-    }
-   
+    return titulo;
 }
 
 export function CrearEstado(value) {
     let estado = value;
-    if ( estado != "P" && estado != "E" && estado != "T" && estado != "C") {
+    if ( estado != "P" && estado != "E" && estado != "T" && estado != "C" && estado!="") {
         return "1";
     }
-    if (estado == "") {
-        estado = "P";
+    if(estado === ""){
+        return "p";
     }
     return estado;
 }
@@ -24,10 +21,8 @@ export function CrearEstado(value) {
 
 export function CrearDescripcion(value) {
     let descripcion = value;
-    if (descripcion.length > 500) {
-        return "1";
-    }
-    return descripcion;
+    
+    return descripcion; 
 }
 
 export function CrearVencimiento() {
