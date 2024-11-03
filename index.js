@@ -49,7 +49,7 @@ function main() {
             }
             break;
         case "2":
-            miBuscador.buscador(aTarea, op, j);
+            miBuscador.buscador(aTarea);
             break;
         case "3":
             cl("15");
@@ -60,25 +60,26 @@ function main() {
             }
 
             cl("17");
-            let descripcion = CrearDescripcion(cl("9")); 
+            let descripcion = CrearDescripcion(cl("9"));
             if (descripcion === "1") {
                 cl("26"); // Manejo de error
                 cl("27");
-                
+                break;
             }
+
             cl("16");
             let estado = CrearEstado(cl("9"));
             if (estado === "1") {
                 cl("26");
                 cl("27");
-                
+                break;
             }
 
             let vencimiento = CrearVencimiento();
             if (vencimiento === "1") {
                 cl("26");
                 cl("27");
-                
+                break;
             }
 
             cl("25");
@@ -86,7 +87,7 @@ function main() {
             if (dificultad === "1") {
                 cl("26");
                 cl("27");
-                
+                break;
             }
 
             let ultimaEd = null;
@@ -102,8 +103,11 @@ function main() {
             break;
     }
     cl("5"); // Pausa
+    pause();
     console.clear();
+   
     return main(); // Llamar de nuevo a main para reiniciar el flujo
+
 }
 
 main();

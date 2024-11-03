@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import prompt from 'prompt-sync';
-import aTarea from './indexviejo.js';
+import aTarea from './index.js';
 import Tarea from './tarea.js'
 //import { mostrarTareas } from './ruta/al/archivo/tareas';
 
