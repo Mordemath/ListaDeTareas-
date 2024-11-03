@@ -6,7 +6,7 @@ function buscarTareas(tareas,clave,i,resultado){
     if(i>=tareas.length){
         return resultado;
     }
-let titulo = tareas[i]["titulo"];
+let titulo = tareas[i].titulo;
 let nuevoResultado = resultado;
 
     if(titulo.includes(clave)){

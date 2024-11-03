@@ -58,7 +58,7 @@ export default  function cl(indice) {
             console.log("Escriba el titulo o una palabra clave del titulo de tarea a buscar o [ENTER] para volver\n")
             break;
         case "9":
-            let a = leer(">");
+            let a = leer();
             return a;
         case "10":
             console.log("El titulo no puede estar vacío.\nVuelva a intentarlo.");

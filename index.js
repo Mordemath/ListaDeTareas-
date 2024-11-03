@@ -3,6 +3,8 @@ import { CrearTitulo, CrearDescripcion, CrearDificultad, CrearEstado, CrearVenci
 import cl from './ConsoleLog.js';
 import prompt from 'prompt-sync'
 import pause from './pause.js';
+import buscador from './buscarTareas.js'
+const miBuscador=new buscador();
 
 let pausa = pause();
 
@@ -45,50 +47,54 @@ function main() {
             }
             break;
         case "2":
+            miBuscador.buscador(aTarea,op,j);
             break;
         case "3":
 
             cl("15");
             let titulo = CrearTitulo(cl("9"));
-            if (titulo == "1") {
+            if (titulo === "1") {
                 cl("26");
                 break;
             }
+             console.log("Titulo:  " + titulo);
+
 
             cl("17");
+           
             let descripcion = CrearDescripcion(cl("9"));
-            if (descripcion == "1") {
+            if (descripcion === "1") {
                 cl("26");
                 cl("27");
-                if (cl("9") == "1") {
+                if (cl("9") === "1") {
                     break;
                 }
             }
             cl("16");
             let estado = CrearEstado(cl("9"));
-            if (estado == "1") {
+            if (estado === "1") {
                 cl("26");
                 cl("27");
-                if (cl("9") == "1") {
+                if (cl("9") === "1") {
                     break;
                 }
             }
 
             let vencimiento = CrearVencimiento();
-            if (vencimiento == "1") {
+            if (vencimiento === "1") {
                 cl("26");
                 cl("27");
-                if (cl("9") == "1") {
+                if (cl("9") === "1") {
                     break;
                 }
             }
 
             cl("25");
             let dificultad = CrearDificultad(cl("9"));
-            if (dificultad == "1") {
+            if (dificultad === "1") {
                 cl("26");
                 cl("27");
-                if (cl("9") == "1") {
+                if (cl("9") === "1") {
                     break;
                 }
             }

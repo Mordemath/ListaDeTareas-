@@ -1,15 +1,18 @@
 import cl from './ConsoleLog.js';
 export function CrearTitulo(value) {
     let titulo = value;
-    if (titulo === "" || titulo == null || titulo.length > 100) {
+    if (titulo === "" || titulo === null || titulo.length > 100) {
         return "1";
     }
-    return titulo;
+    else{
+        return titulo;
+    }
+   
 }
 
 export function CrearEstado(value) {
     let estado = value;
-    if ( estado != "P" || estado != "E" || estado != "T" || estado != "C") {
+    if ( estado != "P" && estado != "E" && estado != "T" && estado != "C") {
         return "1";
     }
     if (estado == "") {
