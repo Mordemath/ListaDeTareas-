@@ -1,28 +1,35 @@
 import cl from './ConsoleLog.js';
-export function CrearTitulo(value) {
-    let titulo = value;
-    if (titulo === "" || titulo === null || titulo.length > 100) {
+export function CrearTitulo() {
+    cl("15");
+    cl("9");
+    let titulo = cl("9");
+    if (titulo === null || titulo.length > 100 || titulo === " ") {
+        cl("28");
+        CrearTitulo();
+    }
+    else if (titulo === "") {
         return "1";
     }
     return titulo;
 }
 
-export function CrearEstado(value) {
-    let estado = value;
-    if ( estado != "P" && estado != "E" && estado != "T" && estado != "C" && estado!="") {
+export function CrearDescripcion() {
+    cl("17");
+    let descripcion = cl("9");
+
+    return descripcion;
+}
+
+export function CrearEstado() {
+    cl("16");
+    let estado = cl("9");
+    if (estado != "P" && estado != "E" && estado != "T" && estado != "C" && estado != "") {
         return "1";
     }
-    if(estado === ""){
+    if (estado === "") {
         return "p";
     }
     return estado;
-}
-
-
-export function CrearDescripcion(value) {
-    let descripcion = value;
-    
-    return descripcion; 
 }
 
 export function CrearVencimiento() {
@@ -48,15 +55,14 @@ export function CrearVencimiento() {
 
     cl("20");
     let mes = cl("9");
-    if ( parseInt(mes).isNaN ||(mes < 1 || mes > 12)) {
+    if (parseInt(mes).isNaN || (mes < 1 || mes > 12)) {
         cl("21");
         return "1";
     }
 
     //Pedimos el día**************************************************************************
-    let dia = cl("9");
-
     cl("22");
+    let dia = cl("9");
     if (dia == " " || dia === "" || (dia < 1 || dia > diasPorMes[mes - 1] || isNaN(dia))) {
         cl("23")
         return "1";
@@ -67,7 +73,8 @@ export function CrearVencimiento() {
 }
 
 export function CrearDificultad(value) {
-    let dificultad = value;
+    cl("25");
+    let dificultad = cl("9");
 
     switch (dificultad) {
         case `F`:
@@ -94,6 +101,6 @@ export function CrearDificultad(value) {
         default: return "1";
 
     }
-    return dificultad; d
+    return dificultad;
 }
 

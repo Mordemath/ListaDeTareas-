@@ -2,9 +2,10 @@ import chalk from 'chalk';
 import prompt from 'prompt-sync';
 import aTarea from './index.js';
 import Tarea from './tarea.js'
-//import { mostrarTareas } from './ruta/al/archivo/tareas';
+import mostrarDetalles from './mostrarDetalles.js';
+import editar from './editarTarea.js';
 
-export default  function cl(indice) {
+export default function cl(indice) {
     let leer = prompt();
     switch (indice) {
         case "1"://Menu Main
@@ -84,7 +85,6 @@ export default  function cl(indice) {
             break;
         case "15":
             console.log("ingrese el titulo  de la tarea o [ENTER] para cancelar");
-            console.log("El titulo no puede estar vacío ni superar los 100 caracteres.\n");
             break;
         case "16":
             console.log(`[] Ingresa el estado o solo [Enter] para dejarlo en default(pendiente):\n([P]endiente) / [E]n curso / [T]erminada / [C]ancelada:`);
@@ -122,97 +122,29 @@ export default  function cl(indice) {
         case "27":
             console.log("Enter para continuar, cualquier otra tecla para volver al menu");
             break;
-
-        /*case "28": ///En curso
-
-            const estadoDeseado = "E";
-            const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-            console.log("Tareas en estado En Curso:");
-            tareasFiltradas.forEach(tarea => {
-                console.log("Título:", tarea.titulo);
-                console.log("Descripción:", tarea.descripcion);
-                console.log("Dificultad:", tarea.dificultad);
-                console.log("Fecha de Creación:", tarea.fechaCreacion);
-                console.log("Fecha de Modificación:", tarea.fechaModificacion);
-                console.log("Fecha de Vencimiento:", tarea.fechaVencimiento);
-                console.log("Estado:", tarea.estado);
-                console.log("---------------");
-            })
+        case "28":
+            console.log("El titulo no puede estar vacío ni superar los 100 caracteres.\n");
             break;
+
 
         case "29": /// Terminadas
 
-            const estadoDeseado = "T";
-            const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-            console.log("Tareas Terminadas:");
-            tareasFiltradas.forEach(tarea => {
-                console.log("Título:", tarea.titulo);
-                console.log("Descripción:", tarea.descripcion);
-                console.log("Dificultad:", tarea.dificultad);
-                console.log("Fecha de Creación:", tarea.fechaCreacion);
-                console.log("Fecha de Modificación:", tarea.fechaModificacion);
-                console.log("Fecha de Vencimiento:", tarea.fechaVencimiento);
-                console.log("Estado:", tarea.estado);
-                console.log("---------------");
-
-
-            });
+            
             break;
+
         case "30": //Canceladas
-            {
-                const estadoDeseado = "C";
-                const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-                console.log("Tareas Canceladas:");
-                tareasFiltradas.forEach(tarea => {
-                    console.log("Título:", tarea.titulo);
-                    console.log("Descripción:", tarea.descripcion);
-                    console.log("Dificultad:", tarea.dificultad);
-                    console.log("Fecha de Creación:", tarea.fechaCreacion);
-                    console.log("Fecha de Modificación:", tarea.fechaModificacion);
-                    console.log("Fecha de Vencimiento:", tarea.fechaVencimiento);
-                    console.log("Estado:", tarea.estado);
-                    console.log("---------------");
-
-
-                });
-                break;
+           
         case "31": /// Pendientes
 
-            const estadoDeseado = "P";
-            const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-            console.log("Tareas en estado En Curso:");
-            tareasFiltradas.forEach(tarea => {
-                console.log("Título:", tarea.titulo);
-                console.log("Descripción:", tarea.descripcion);
-                console.log("Dificultad:", tarea.dificultad);
-                console.log("Fecha de Creación:", tarea.fechaCreacion);
-                console.log("Fecha de Modificación:", tarea.fechaModificacion);
-                console.log("Fecha de Vencimiento:", tarea.fechaVencimiento);
-                console.log("Estado:", tarea.estado);
-                console.log("---------------");
-
-
-            }); */
-            break;
         case "50": ///Todas las tareas
-            console.log("Todas las Tareas:");
-            aTarea.forEach(aTarea => {
-                console.log(`Título:  ${aTarea.titulo}`);
-                console.log(`Descripción:  ${aTarea.descripcion}`);
-                console.log(`Dificultad:  ${aTarea.dificultad}`);
-                console.log(`Fecha de Creación:  ${aTarea.creacion}`);
-                console.log(`Fecha de Modificación: ${aTarea.ultimaEd}`);
-                console.log(`Fecha de Vencimiento:  ${aTarea.vencimiento}`);
-                console.log(`Estado:  ${aTarea.estado}`);
-                console.log("---------------");
-            });
+           
             break;
-            case "51":
-                console.error("Opción inválida");
-                break;
-            case "52":
-                console.error("No hay tareas cargadas...");
-                break;
+        case "51":
+            console.error("Opción inválida");
+            break;
+        case "52":
+            console.error("No hay tareas cargadas...");
+            break;
 
 
 

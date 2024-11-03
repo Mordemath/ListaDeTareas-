@@ -1,12 +1,12 @@
 
-export default function mostrarDetalles(arregloTarea) {
-    console.log(`Título: ${arregloTarea['titulo']}`);
-    console.log(`Descripción: ${arregloTarea['descripcion']}`);
-    console.log(`Estado: ${arregloTarea['estado']}`);
-    console.log(`Fecha de Creación: ${arregloTarea['fechaCreacion']}`);
-    console.log(`Última Edición: ${arregloTarea['fechaUltimaEdicion']}`);
-    console.log(`Vencimiento: ${arregloTarea['fechaVencimiento']}`);
-    console.log(`Dificultad: ${arregloTarea['dificultad']}`);
+export default function mostrarDetalles(arregloTarea,i) {
+    console.log(`Título: ${arregloTarea[i].titulo}`);
+    console.log(`Descripción: ${arregloTarea[i].descripcion}`);
+    console.log(`Estado: ${arregloTarea[i].estado}`);
+    console.log(`Fecha de Creación: ${arregloTarea[i].creacion}`);
+    console.log(`Última Edición: ${arregloTarea[i].ultimaEd}`);
+    console.log(`Vencimiento: ${arregloTarea[i].vencimiento}`);
+    console.log(`Dificultad: ${arregloTarea[i].dificultad}`);
 }
 
 

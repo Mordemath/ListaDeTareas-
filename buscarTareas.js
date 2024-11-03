@@ -1,53 +1,82 @@
-import cl from './ConsoleLog.js';
-import pausa from './pause.js'
+import prompt from 'prompt-sync';
+import pause from './pause.js';
 import mostrarDetalles from './mostrarDetalles.js';
+import editar from './editarTarea.js';
+import { foregroundColorNames } from 'chalk';
+import aTarea from './index.js';
+const leer = prompt();
 
-function buscarTareas(tareas,clave,i,resultado){
-    if(i>=tareas.length){
-        return resultado;
-    }
-let titulo = tareas[i].titulo;
-let nuevoResultado = resultado;
-
-    if(titulo.includes(clave)){
-    nuevoResultado = nuevoResultado.concat(i);
-    }
-    return buscarTareas(tareas,clave,i+1,nuevoResultado);
+function obtenerPalabraClave() {
+    return leer("Ingrese una palabra o conjunto de palabras para buscar en los títulos de las tareas: ");
 }
 
-function validarIndice(i,tareas){
-    if (index >= tareas.length || index < 0 || isNaN(index)) {
-        return["Indice invalido"];
+function filtrarTareas(tareas, palabraClave) {
+    let resultados = [];
+    for (let i = 0; i < tareas.length; i++) {
+        if (tareas[i].titulo.includes(palabraClave)) {
+            resultados.push(tareas[i]);
+        }
     }
-    return ["indice valido"];
+    return resultados;
 }
 
-export default function(){
-    this.buscador = function (tareas,op,j) {
-        let i= parseInt(j)-1;
-        let resultado;
-        switch(op){
-            case '0':
-                resultado=validarIndice(i,tareas);
-                return ["No se encuentran resultados."];
-                break;
-            case '1':
-                let clave = cl("9");
-                if(clave!==''){
-                    let indicesEncontrados=buscar(tareas,clave,0,[]);
-                    if(indicesEncontrados.length===0){
-                        return cl("6");
-                    }else{
-                        for(let i=0;i<indicesEncontrados.length;i++){
-                            mostrarDetalles(tareas[indicesEncontrados[j]]);
-                        }
-                        cl("12");
-                        return cl("13");
-                    }
-                }
-                break;
-                default:
-                    return null;
+function mostrarResultados(resultados) {
+    console.clear();
+    if (resultados.length > 0) {
+        console.log("Tareas encontradas:");
+        for (let i = 0; i < resultados.length; i++) {
+            console.log((i + 1) + ". " + resultados[i].titulo);
+        }
+    } else {
+        console.log("No se encontraron tareas que coincidan con la búsqueda.");
+    }
+}
+
+function deseaVerTarea() {
+    let ver = leer("¿Desea ver alguna tarea? s/n: ").toUpperCase();
+    while (ver !== "S" && ver !== "N") {
+        ver = leer("Ingrese S o N: ").toUpperCase();
+    }
+    return ver === "S";
+}
+
+function obtenerIndice() {
+    let indice = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
+    return indice;
+}
+
+function esIndiceValido(indice, resultados) {
+    return !(isNaN(indice) || indice < 0 || indice >= resultados.length);
+}
+
+function manejarEleccion(indice, resultados) {
+    let elegir = leer("Ingrese E para editar o 0 para volver: ").toUpperCase();
+    if (elegir === "E") {
+        console.log("Ingresando al menú de editar tareas...");
+        console.log("Estás editando la tarea: " + resultados[indice].titulo);
+        const cont = aTarea.findIndex(tarea => tarea.titulo === resultados[indice].titulo);//esta cosa es clave😎
+        return editar(aTarea[cont]);
+    } else if (elegir !== "0") {
+        console.error("Tiene que ingresar E o 0.");
+        pause();
+    }
+}
+
+export default function buscarTarea(tareas) {
+    let palabraClave = obtenerPalabraClave();
+    let resultados = filtrarTareas(tareas, palabraClave);
+
+    mostrarResultados(resultados);
+
+    if (resultados.length > 0 && deseaVerTarea()) {
+        let indice = obtenerIndice();
+        if (esIndiceValido(indice, resultados)) {
+            mostrarDetalles(resultados[indice]);
+            return manejarEleccion(indice, resultados);
+        } else {
+            console.error("Número de tarea inválido. Ingrese un número correcto.");
+            cl("5");
+            pause();
         }
     }
 }
