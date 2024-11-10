@@ -1,108 +1,147 @@
 import cl from './ConsoleLog.js';
-export function CrearTitulo() {
-    cl("15");
-    cl("9");
-    let titulo = cl("9");
-    if (titulo === null || titulo.length > 100 || titulo === " ") {
-        cl("28");
-        CrearTitulo();
+import prompt from 'prompt-sync';
+import Tarea from './tarea.js';
+import { tituloValido, DescripcionValida, dificultadValida, EstadoValido, anoValido, mesValido, diaValido } from './controles.js';
+export function CrearEstado(estado) {
+    switch (estado) {
+        case "P":
+            return "Pendiente";
+        case "E":
+            return "En Curso";
+        case "T":
+            return "Terminada";
+        case "":
+            return "Pendiente";
     }
-    else if (titulo === "") {
-        return "1";
-    }
-    return titulo;
 }
-
-export function CrearDescripcion() {
-    cl("17");
-    let descripcion = cl("9");
-    if (descripcion.length > 100) {
-        return "1";
-    }
-    return descripcion;
-}
-
-export function CrearEstado() {
-    cl("16");
-    let estado = cl("9");
-    if (estado != "P" && estado != "E" && estado != "T" && estado != "C" && estado != "") {
-        return "1";
-    }
-    if (estado === "") {
-        return "p";
-    }
-    return estado;
-}
-
-export function CrearVencimiento() {
-    cl("18");
-    //Pedimos el año**************************************************************************
-    cl("18");
-    let año = cl("9");
-
-    if ((año === "" || año === ` ` || año.length != 4 || año == NaN) && año != "") {
-        cl("19");
-        return "1";
-    }
-    let bisiesto = (año % 4 === 0 && (año % 100 !== 0 || año % 400 === 0));
-    let diasPorMes;
-    // Ajustar febrero para años bisiestos
-    if (bisiesto) {
-        diasPorMes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    }
-    else {
-        diasPorMes = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    }
-    //Pedimos el mes**************************************************************************
-
-    cl("20");
-    let mes = cl("9");
-    if (parseInt(mes).isNaN || (mes < 1 || mes > 12)) {
-        cl("21");
-        return "1";
-    }
-
-    //Pedimos el día**************************************************************************
-    cl("22");
-    let dia = cl("9");
-    if (dia == " " || dia === "" || (dia < 1 || dia > diasPorMes[mes - 1] || isNaN(dia))) {
-        cl("23")
-        return "1";
-    }
-
-    let vencimiento = [dia + `/` + mes + `/` + año];
-    return vencimiento;
-}
-
-export function CrearDificultad(value) {
-    cl("25");
-    let dificultad = cl("9");
-
+export function CrearDificultad(dificultad) {
     switch (dificultad) {
         case `F`:
-            dificultad = "🌑🌑🌑";
-            break;
+            return "🌑🌑🌑";
         case `M`:
-            dificultad = "🌕🌕🌑";
-            break;
+            return "🌕🌕🌑";
         case `D`:
-            dificultad = "🌕🌕🌕";
-            break;
-        case `f`:
-            dificultad = "🌑🌑🌑";
-            break;
-        case `m`:
-            dificultad = "🌕🌕🌑";
-            break;
-        case `d`:
-            dificultad = "🌕🌕🌕";
-            break;
+            return "🌕🌕🌕";
         case "":
-            dificultad = "🌑🌑🌑";
-            break;
-        default: return "1";
-
+            return "🌑🌑🌑";
     }
-    return dificultad;
 }
 
+export function CrearVencimiento(ano, mes, dia) {
+
+
+    if (!(anoValido(ano))) { return false };
+
+    if (!(mesValido(mes))) { return false };
+
+    if (!(diaValido(mes, ano, dia))) { return false };
+
+    return crearFechaVencimiento(dia, mes, ano);
+}
+
+function crearFechaVencimiento(dia, mes, ano) {
+    return `${dia}/${mes}/${ano}`;
+}
+
+export function AsignarAtributos(tareas) {
+    const scannf = prompt();
+    cl("Menu_Agregar_Tareas");
+    let op = scannf();
+    let fechaActual = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    let titulo,descripcion,estado,dificultad,vencimiento,creacion,ano,dia,mes;
+    switch (op) {
+        case "1"://titulo
+            console.log("Ingrese el título");
+            console.log("El titulo no puede exceder los 100 caracteres");
+            console.log("El titulo no puede estar vacío");
+            titulo = scannf();
+            titulo = tituloValido(titulo);
+            if (titulo === false) {
+                console.log("valor invalido");
+                break;
+            }
+            console.log("Titulo agregado");
+            tareas.titulo = titulo;
+            break;
+        case "2"://Descripción
+            console.log("Ingrese la descripción");
+            console.log("la descripcion no puede exeder los 500 caracteres");
+            descripcion = DescripcionValida(scannf());
+            if (descripcion === false) {
+                console.log("valor invalido");
+                break;
+            }
+            console.log("Descripción agregada correctamente");
+            tareas.descripcion = descripcion;
+            break;
+        case "3":
+            console.log("Ingrese la dificultad [F]acil, [M]edio, [D]ificil");
+            console.log("Si el estado está vacío queda en [F]acil por defecto");
+            dificultad = scannf().toUpperCase().trim();
+            dificultad = dificultadValida(dificultad);
+            if (dificultad === false) {
+                console.log("valor invalido");
+                break;
+            }
+            dificultad = CrearDificultad(dificultad);
+            console.log("Dificultad agregada correctamente");
+            tareas.dificultad = dificultad;
+            break;
+        case "4":
+            console.log("Ingrese el estado");
+            console.log("[P]endiente, [E]ncurso, [T]erminado");
+            console.log("Si el estado está vacío queda en [P]endiente por defecto");
+            estado = scannf().toUpperCase().trim();
+            estado = EstadoValido(estado);
+            if (estado === false) {
+                console.error("valor invalido");
+                break;
+            }
+            estado = CrearEstado(estado);
+            console.log("estado agregado correctamente");
+            tareas.estado = estado;
+            break;
+        case "5":
+            ano = scannf("ingrese el año 4 digitos ejemplo: (2024)");
+            mes = scannf("Ingrese el mes 2 digitos ejemplo: (12)");
+            dia = scannf("Ingrese el dia 2 digitos ejemplo (05), (tiene en cuenta años biciestos)");
+            vencimiento = CrearVencimiento(ano, mes, dia);
+            if (vencimiento === false) {
+                console.error("valor invalido");
+                break;
+            }
+            console.log("Vencimiento agregado");
+            tareas.vencimiento = vencimiento;
+            break;
+        case "6":
+            titulo = tareas.titulo;
+            descripcion = tareas.descripcion;
+            estado = tareas.estado;
+            dificultad = tareas.dificultad;
+            vencimiento = tareas.vencimiento;
+            if (titulo !== null || titulo !== false) {
+                if (dificultad === "----" || dificultad === undefined) {
+                    dificultad = CrearDificultad("");
+                }
+                if (estado === "----" || estado === undefined) {
+                    estado = CrearEstado("");
+                }
+                if (vencimiento === undefined) {
+                    vencimiento = "----";
+                }
+                creacion = new Date();
+                console.log("Tarea agregada correctamente");
+                const tarea = new Tarea(titulo, estado, descripcion, vencimiento, dificultad, "----", creacion);
+                console.log(tarea);
+                return tarea;
+            }
+            break;
+        case "0":
+            console.log("Volviendo al menu...");
+            return;
+        default:
+            console.error("Ingrese una opción válida");
+    }
+    return AsignarAtributos(tareas);
+
+}

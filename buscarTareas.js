@@ -2,8 +2,7 @@ import prompt from 'prompt-sync';
 import pause from './pause.js';
 import mostrarDetalles from './mostrarDetalles.js';
 import editar from './editarTarea.js';
-import { foregroundColorNames } from 'chalk';
-import aTarea from './index.js';
+
 const leer = prompt();
 
 function obtenerPalabraClave() {
@@ -75,7 +74,7 @@ export default function buscarTarea(tareas) {
             return manejarEleccion(indice, resultados);
         } else {
             console.error("Número de tarea inválido. Ingrese un número correcto.");
-            cl("5");
+            cl("Pausa");
             pause();
         }
     }

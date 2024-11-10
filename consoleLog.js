@@ -1,14 +1,12 @@
 import chalk from 'chalk';
 import prompt from 'prompt-sync';
-import aTarea from './index.js';
-import Tarea from './tarea.js'
-import mostrarDetalles from './mostrarDetalles.js';
-import editar from './editarTarea.js';
+
+
 
 export default function cl(indice) {
     let leer = prompt();
     switch (indice) {
-        case "1"://Menu Main
+        case "Menu"://Menu Main
             console.log("******************************");
             console.log("*          📋 MENU           *");
             console.log("******************************");
@@ -18,7 +16,7 @@ export default function cl(indice) {
             console.log("[3] Agregar una tarea");
             console.log("[0] Salir");
             break;
-        case "2"://Menu Tareas
+        case "Menu_Tareas"://Menu Tareas
             console.log("******************************");
             console.log("*          📋 Tareas          *");
             console.log("******************************");
@@ -29,13 +27,14 @@ export default function cl(indice) {
             console.log("[4] Terminadas");
             console.log("[0] Salir...");
             break;
-        case "3"://Menu buscar tareas
+        case "Menu_Buscar_Tareas"://Menu buscar tareas
             console.log("=== Menú de Buscar Tarea ===");
             console.log("Seleccione una opción:");
             console.log("1. Buscar por título");
             console.log("0. Volver al menú principal");
-            break
-        case "4"://Menu add tareas
+
+            break;
+        case "Menu_Agregar_Tareas"://Menu add tareas
             console.log("******************************");
             console.log("*          📋 Agregar Tareas          *");
             console.log("******************************");
@@ -47,19 +46,13 @@ export default function cl(indice) {
             console.log("[6] Guardar la tarea (Cuando se guarda la tarea te manda al menú principal)");
             console.log("[0] Volver al menú (Si no se cargan los campos obligatorios no se guardará la tarea)...");
             break;
-        case "5"://Pausa
+        case "Pausa"://Pausa
             console.log("Presione la tecla [ENTER] para continuar...");
-            break;
-        case "6":
-            console.log("No se encuentran resultados.");
-            break;
-        case "7":
-            console.log(chalk.greenBright(`[] Ingresa el titulo o solo [Enter] para cancelar.\n`));
             break;
         case "8":
             console.log("Escriba el titulo o una palabra clave del titulo de tarea a buscar o [ENTER] para volver\n")
             break;
-        case "9":
+        case "Leer":
             let a = leer();
             return a;
         case "10":
@@ -142,7 +135,7 @@ export default function cl(indice) {
         case "51":
             console.error("Opción inválida");
             break;
-        case "52":
+        case "Error":
             console.error("No hay tareas cargadas...");
             break;
 
