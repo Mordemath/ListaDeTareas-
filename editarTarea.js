@@ -40,38 +40,38 @@ function editarEstado(tarea, opciones) {
 
 function editarDificultad(tarea, opciones) {
     const dificultades = {
-        "1": "🌑",
-        "2": "🌑🌑",
-        "3": "🌑🌑🌑"
+        "1": "🌑🌑🌑",
+        "2": "🌕🌕🌑",
+        "3": "🌕🌕🌕"
     };
-    
+
     return dificultades[opciones.dificultad] || tarea.dificultad;
 }
 
 function editarVencimiento(tarea, opciones) {
-        if (opciones.vencimiento.trim() === "") { 
-            return tarea.vencimiento
-        } else {
-            return opciones.vencimiento;
-        }
+    if (opciones.vencimiento.trim() === "") {
+        return tarea.vencimiento
+    } else {
+        return opciones.vencimiento;
+    }
 }
 
 export function editarTarea(tarea, opciones) {
-    let nuevaTarea = {...tarea};
+    let nuevaTarea = tarea;
     if (opciones.titulo !== undefined) {
-        nuevaTarea.titulo=editarTitulo(tarea, opciones);
-        }
+        nuevaTarea.titulo = editarTitulo(tarea, opciones);
+    }
     if (opciones.descripcion !== undefined) {
-        nuevaTarea.descripcion=editarDescripcion(tarea, opciones);
-        }
+        nuevaTarea.descripcion = editarDescripcion(tarea, opciones);
+    }
     if (opciones.estado !== undefined) {
-        nuevaTarea.estado=editarEstado(tarea, opciones);
-        }
+        nuevaTarea.estado = editarEstado(tarea, opciones);
+    }
     if (opciones.dificultad !== undefined) {
-        nuevaTarea.dificultad=editarDificultad(tarea, opciones);
+        nuevaTarea.dificultad = editarDificultad(tarea, opciones);
     }
     if (opciones.vencimiento !== undefined) {
-        nuevaTarea.vencimiento=editarVencimiento(tarea, opciones);
+        nuevaTarea.vencimiento = editarVencimiento(tarea, opciones);
     }
     return nuevaTarea;
 }
@@ -141,7 +141,7 @@ export function edicionMenu(tarea) {
     tarea = editarTarea(tarea, opciones);
 
     console.log("La tarea se ha guardado.");
-    pause()
+    const lectura=leer("Presione algo para continuar");
     console.clear()
 
     // Llama de nuevo al menú para continuar editando

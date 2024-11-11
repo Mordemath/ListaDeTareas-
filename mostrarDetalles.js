@@ -12,33 +12,25 @@ export default function mostrarDetalles(arregloTarea,i) {
 
 export function mostrarTareas(arregloTarea, estadoDeseado) 
 {
-   ///TODAS
-    if (estadoDeseado != null)
-    {
-        return arregloTarea;
-    }
+    ///TODAS
+
      ///Caso 1: En Curso
-    if (estadoDeseado === "E")
+    if (estadoDeseado === "En Curso")
     {
         let tareasFiltradas = arregloTarea.filter(tarea => tarea.estado === estadoDeseado);
         return tareasFiltradas;
     }
     ///TERMINADAS
-    if (estadoDeseado === "T")
+    if (estadoDeseado === "Terminada")
     {
         let tareasFiltradas = arregloTarea.filter(tarea => tarea.estado === estadoDeseado);
         return tareasFiltradas;
     }
     ///PENDIENTES
-    if (estadoDeseado === "P")
+    if (estadoDeseado === "Pendiente")
     {
         let tareasFiltradas = arregloTarea.filter(tarea => tarea.estado === estadoDeseado);
         return tareasFiltradas;
     }
     
-    if (estadoDeseado === "C")
-    {
-        let tareasFiltradas = arregloTarea.filter(tarea => tarea.estado === estadoDeseado);
-        return tareasFiltradas;
-    }
 }

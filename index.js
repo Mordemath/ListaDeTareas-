@@ -4,18 +4,20 @@ import pausa from './pause.js';
 import buscarTarea from './buscarTareas.js';
 import Tarea from './tarea.js';
 import { AsignarAtributos } from './CrearAtributo.js';
-import { Encurso, mostrarTotal, terminadas, pendientes, canceladas } from './todasTareas.js';
+import { Encurso, mostrarTotal, terminadas, pendientes } from './todasTareas.js';
+import subMenuTareas from './mostrarTareasMenu.js'
 
-function init(){
-    const aTarea=[];
+
+function init() {
+    const aTarea = [];
     main(aTarea);
 }
 
 function main(aTarea) {
     let op;
+    let auxiliarArray=[];
     cl("Menu"); // Mostrar el menú principal
     op = cl("Leer"); // Capturar la opción seleccionada
-    let auxiliarArray = []
     switch (op) {
         case '1':
             if (aTarea.length === 0) {
@@ -24,48 +26,8 @@ function main(aTarea) {
             }
             cl("Menu_Tareas"); // Menú de tareas
             let subMenuOption = cl("Leer"); // Capturar opción del submenú
-            switch (subMenuOption) {
-                case "1": // Mostrar todas las tareas
-                    auxiliarArray = mostrarTotal(aTarea);
-
-                    if (auxiliarArray) {
-                        aTarea = auxiliarArray;
-                        console.log("Se realizo un cambio");
-                    }
-
-                    break;
-                case "2":// Mostrar tareas pendientes
-                    auxiliarArray = pendientes(aTarea);
-                    if (auxiliarArray) {
-                        aTarea = auxiliarArray;
-                        console.log("Se realizo un cambio");
-                    }
-                    break;
-                case "3":// Mostrar tareas en curso
-                    auxiliarArray = Encurso(aTarea);
-                    if (auxiliarArray) {
-                        aTarea = auxiliarArray;
-                        console.log("Se realizo un cambio");
-                    }
-                    break;
-                case "4": // Mostrar tareas terminadas
-                    auxiliarArray = terminadas(aTarea);
-                    if (auxiliarArray) {
-                        aTarea = auxiliarArray;
-                        console.log("Se realizo un cambio");
-                    }
-                    break;
-                case "0"://Mostrar Tareas canceladas
-                    auxiliarArray = canceladas(aTarea);
-                    if (auxiliarArray) {
-                        aTarea = auxiliarArray;
-                        console.log("Se realizo un cambio");
-                    }
-                    break;
-                default:
-                    cl("51"); // Opción inválida
-                    break;
-            }
+            aTarea = subMenuTareas(subMenuOption,aTarea);
+            console.log("Se realizo un cambio");
             break;
         case "2":
             auxiliarArray = buscarTarea(aTarea);
@@ -77,7 +39,9 @@ function main(aTarea) {
         case "3":
             const tarea = new Tarea();
             aTarea.push(AsignarAtributos(tarea));
-            console.log(aTarea);
+            if (aTarea[(aTarea.length) - 1 ] == undefined || aTarea[(aTarea.length) - 1] == null) {
+                aTarea.pop();
+            }
             break;
         case "0":
             return;
@@ -92,5 +56,5 @@ function main(aTarea) {
     return main(aTarea); // Llamar de nuevo a main para reiniciar el flujo
 
 }
-init(); 
+init();
 main();

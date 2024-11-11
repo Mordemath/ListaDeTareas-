@@ -53,8 +53,7 @@ function manejarEleccion(indice, resultados) {
     if (elegir === "E") {
         console.log("Ingresando al menú de editar tareas...");
         console.log("Estás editando la tarea: " + resultados[indice].titulo);
-        const cont = aTarea.findIndex(tarea => tarea.titulo === resultados[indice].titulo);//esta cosa es clave😎
-        return editar(aTarea[cont]);
+        return editar(resultados[indice]);
     } else if (elegir !== "0") {
         console.error("Tiene que ingresar E o 0.");
         pause();
@@ -70,7 +69,7 @@ export default function buscarTarea(tareas) {
     if (resultados.length > 0 && deseaVerTarea()) {
         let indice = obtenerIndice();
         if (esIndiceValido(indice, resultados)) {
-            mostrarDetalles(resultados[indice]);
+            mostrarDetalles(resultados, indice);
             return manejarEleccion(indice, resultados);
         } else {
             console.error("Número de tarea inválido. Ingrese un número correcto.");

@@ -48,7 +48,7 @@ export function AsignarAtributos(tareas) {
     cl("Menu_Agregar_Tareas");
     let op = scannf();
     let fechaActual = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
-    let titulo,descripcion,estado,dificultad,vencimiento,creacion,ano,dia,mes;
+    let titulo, descripcion, estado, dificultad, vencimiento, creacion, ano, dia, mes;
     switch (op) {
         case "1"://titulo
             console.log("Ingrese el título");
@@ -119,7 +119,7 @@ export function AsignarAtributos(tareas) {
             estado = tareas.estado;
             dificultad = tareas.dificultad;
             vencimiento = tareas.vencimiento;
-            if (titulo !== null || titulo !== false) {
+            if (titulo !== null && titulo !== false && titulo !== undefined) {
                 if (dificultad === "----" || dificultad === undefined) {
                     dificultad = CrearDificultad("");
                 }
@@ -128,6 +128,9 @@ export function AsignarAtributos(tareas) {
                 }
                 if (vencimiento === undefined) {
                     vencimiento = "----";
+                }
+                if (descripcion === undefined) {
+                    descripcion = "----";
                 }
                 creacion = new Date();
                 console.log("Tarea agregada correctamente");
