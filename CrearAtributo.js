@@ -39,7 +39,7 @@ export function CrearVencimiento(ano, mes, dia) {
     return crearFechaVencimiento(dia, mes, ano);
 }
 
-function crearFechaVencimiento(dia, mes, ano) {
+export function crearFechaVencimiento(dia, mes, ano) {
     return `${dia}/${mes}/${ano}`;
 }
 

@@ -11,7 +11,7 @@ function tituloValido(titulo) {
 }
 
 function DescripcionValida(descripcion) {
-    if ( descripcion.length > 500 || descripcion === " ") {
+    if (descripcion.length > 500 || descripcion === " ") {
         return false;
     }
     else {
@@ -20,8 +20,8 @@ function DescripcionValida(descripcion) {
 }
 
 function dificultadValida(dificultad) {
-    if (dificultad !== "F" && dificultad !== "M" && dificultad !== "D" && dificultad !=="") {
-       return false;
+    if (dificultad !== "F" && dificultad !== "M" && dificultad !== "D" && dificultad !== "") {
+        return false;
     }
     else {
         return dificultad;
@@ -29,7 +29,7 @@ function dificultadValida(dificultad) {
 }
 
 function EstadoValido(estado) {
-    if (estado !== "P" && estado !== "E" && estado !== "T" && estado !== "" ) {
+    if (estado !== "P" && estado !== "E" && estado !== "T" && estado !== "") {
         return false;
     }
     else {
@@ -38,7 +38,7 @@ function EstadoValido(estado) {
 }
 
 function anoValido(ano) {
-    if (ano === "" || ano.trim() === "" || ano.length !== 4 || isNaN(ano)) {
+    if (ano === "" || ano.trim() === "" || ano.length !== 4 || isNaN(ano) ) {
         return null;
     }
     return parseInt(ano);
@@ -74,8 +74,57 @@ function obtenerDiasPorMes(ano) {
     return diasPorMes;
 }
 
+function controlArreglo(tarea) {
+    if (!(tarea.length > 0)) {
+        return false;
+    }
+    return true;
+}
 
-export { tituloValido, DescripcionValida, dificultadValida, EstadoValido, anoValido, mesValido, diaValido, obtenerDiasPorMes }
+function control(op) {
+    if (op !== "S" && op !== "N" && op.trim() !== "") {//ahora retorna falso si es invalido y true si es valido
+        return false;
+    }
+    return true;
+}
+
+
+function control2(op) {
+    if (op !== "E" && op !== "0" && op.trim() !== "") {//ahora retorna falso si es invalido y true si es valido
+        return false;
+    }
+    return true;
+}
+
+function validarTitulo(nuevoTitulo) {
+    if (nuevoTitulo > 100 || nuevoTitulo == null) {
+        return false;
+    }
+    return true;
+}
+
+function validarDescripcion(nuevaDescripcion) {
+    if (nuevaDescripcion > 500) {
+        return false;
+    }
+    return true;
+}
+
+function validarDificultad (nuevaDificultad){
+    if(nuevaDificultad !== "1" && nuevaDificultad !=="2" && nuevaDificultad !== "3"){
+        return false;
+    }
+    return true;
+}
+
+function validarEstado (nuevoEstado){
+    if(nuevoEstado !== "E" && nuevoEstado !== "P" && nuevoEstado !== "T" && nuevoEstado !== "C"){
+        return false;
+    }
+    return true;
+}
+export { tituloValido, DescripcionValida, dificultadValida, EstadoValido, anoValido, mesValido, diaValido, obtenerDiasPorMes, controlArreglo, validarDescripcion, validarTitulo, control, control2, validarDificultad, validarEstado};
+
 
 
 //De acá para abajo controles de [Inserte nombre]******************************************************************************************

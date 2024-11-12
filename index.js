@@ -24,11 +24,16 @@ function main(aTarea) {
                 break; // Terminar el caso
             }
             cl("Menu_Tareas"); // Menú de tareas
+            
             let subMenuOption = cl("Leer"); // Capturar opción del submenú
             aTarea = subMenuTareas(subMenuOption,aTarea);
             console.log("Se realizo un cambio");
             break;
         case "2":
+            if (aTarea.length === 0) {
+                cl("Error"); // No hay tareas
+                break; // Terminar el caso
+            }
             auxiliarArray = buscarTarea(aTarea);
             if (auxiliarArray) {
                 aTarea = auxiliarArray;

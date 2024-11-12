@@ -3,11 +3,16 @@ import { mostrarTareas } from './mostrarDetalles.js';
 import prompt from "prompt-sync";
 import editar from './editarTarea.js';
 import pausa from './pause.js';
+import { controlArreglo, control, control2} from './controles.js';
 const leer = prompt();
 
 function Encurso(aTarea) {
     const estadoDeseado = "En curso";
     let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
+    if (!(controlArreglo(tareasFiltradas))) {
+        console.log("No hay tareas en curso");
+        return aTarea;
+    }
     console.log("Filtrado por estado [E]n Curso:");
     tareasFiltradas = opcionesDeTarea(tareasFiltradas, 0);
     return tareasFiltradas;
@@ -16,6 +21,10 @@ function Encurso(aTarea) {
 function terminadas(aTarea) {
     const estadoDeseado = "Terminada";
     let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
+    if (!(controlArreglo(tareasFiltradas))) {
+        console.log("No se cargaron las tareas Terminadas");
+        return aTarea;
+    }
     console.log("Filtrado por [T]erminadas:");
     tareasFiltradas = opcionesDeTarea(tareasFiltradas, 0);
     return tareasFiltradas;
@@ -24,6 +33,10 @@ function terminadas(aTarea) {
 function pendientes(aTarea) {
     const estadoDeseado = "Pendiente";
     let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
+    if (!(controlArreglo(tareasFiltradas))) {
+        console.log("No se cargaron las tareas Pendientes");
+        return aTarea;
+    }
     console.log("Filtrado por [P]endientes:");
     tareasFiltradas = opcionesDeTarea(tareasFiltradas, 0);
     return tareasFiltradas;
@@ -68,6 +81,10 @@ function editarTareaOp(aTarea, cont) {
     let i;
     if (cont == 0) {
         i = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
+        if (i > aTarea.length || isNaN(i) ) {
+            console.log("El numero ingresado es invalido");
+            return;
+        }
         mostrarDetalles(aTarea, i);//falta un control para el indice que ingresa el user, igual es facil si copiamos los que tenemos++++
     }
     let ver = leer("E para modificar y 0 para salir").toUpperCase();
@@ -84,19 +101,4 @@ function editarTareaOp(aTarea, cont) {
     }
     return arrayAux;
 }
-function control(op) {
-    if (op !== "S" && op !== "N" && op.trim() !== "") {//ahora retorna falso si es invalido y true si es valido
-        return false;
-    }
-    return true;
-}
-
-
-function control2(op) {
-    if (op !== "E" && op !== "0" && op.trim() !== "") {//ahora retorna falso si es invalido y true si es valido
-        return false;
-    }
-    return true;
-}
-
 export { Encurso, opcionesDeTarea, terminadas, pendientes };

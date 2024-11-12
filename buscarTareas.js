@@ -2,39 +2,24 @@ import prompt from 'prompt-sync';
 import pause from './pause.js';
 import mostrarDetalles from './mostrarDetalles.js';
 import editar from './editarTarea.js';
-
+import { controlArreglo } from './controles.js';
+import { imprimirLista } from './todasTareas.js';
 const leer = prompt();
-
-function obtenerPalabraClave() {
-    return leer("Ingrese una palabra o conjunto de palabras para buscar en los títulos de las tareas: ");
-}
 
 function filtrarTareas(tareas, palabraClave) {
     let resultados = [];
-    for (let i = 0; i < tareas.length; i++) {
-        if (tareas[i].titulo.includes(palabraClave)) {
-            resultados.push(tareas[i]);
+    tareas.forEach((tarea) => {
+        if (tarea.titulo.includes(palabraClave)) {
+            resultados.push(tarea);
         }
-    }
+    });
     return resultados;
 }
 
-function mostrarResultados(resultados) {
-    console.clear();
-    if (resultados.length > 0) {
-        console.log("Tareas encontradas:");
-        for (let i = 0; i < resultados.length; i++) {
-            console.log((i + 1) + ". " + resultados[i].titulo);
-        }
-    } else {
-        console.log("No se encontraron tareas que coincidan con la búsqueda.");
-    }
-}
-
-function deseaVerTarea() {
+function deseaVerTarea(ver1) {
     let ver = leer("¿Desea ver alguna tarea? s/n: ").toUpperCase();
-    while (ver !== "S" && ver !== "N") {
-        ver = leer("Ingrese S o N: ").toUpperCase();
+    if (ver !== "S" && ver !== "N") {
+        console.log("Opcion invalida.");
     }
     return ver === "S";
 }
@@ -61,11 +46,14 @@ function manejarEleccion(indice, resultados) {
 }
 
 export default function buscarTarea(tareas) {
-    let palabraClave = obtenerPalabraClave();
+    let palabraClave = leer("Ingrese una palabra o conjunto de palabras para buscar en los títulos de las tareas: ");
     let resultados = filtrarTareas(tareas, palabraClave);
-
-    mostrarResultados(resultados);
-
+    if(controlArreglo(resultados)){
+        console.log("Tareas encontradas:");
+        imprimirLista(resultados, 0);
+    }else{
+        console.error("No se encontro ninguna tarea");
+    }
     if (resultados.length > 0 && deseaVerTarea()) {
         let indice = obtenerIndice();
         if (esIndiceValido(indice, resultados)) {
@@ -73,7 +61,7 @@ export default function buscarTarea(tareas) {
             return manejarEleccion(indice, resultados);
         } else {
             console.error("Número de tarea inválido. Ingrese un número correcto.");
-            cl("Pausa");
+            //return ["Número de tarea inválido. Ingrese un número correcto."];
             pause();
         }
     }

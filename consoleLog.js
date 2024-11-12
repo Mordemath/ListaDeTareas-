@@ -1,8 +1,6 @@
 import chalk from 'chalk';
 import prompt from 'prompt-sync';
 
-
-
 export default function cl(indice) {
     let leer = prompt();
     switch (indice) {
@@ -35,102 +33,31 @@ export default function cl(indice) {
 
             break;
         case "Menu_Agregar_Tareas"://Menu add tareas
+            console.log("         Estas creando una tarea");
             console.log("******************************");
             console.log("*          📋 Agregar Tareas          *");
             console.log("******************************");
-            console.log("[1] Agregar título (*obligatorio)");
-            console.log("[2] Agregar descripción (opcional)");
+            console.log("[1] Agregar título (*Obligatorio)");
+            console.log("[2] Agregar descripción (Opcional)");
             console.log("[3] Agregar dificultad (Fácil, media, difícil), por defecto (fácil)");
             console.log("[4] Para ingresar un estado (Pendiente, En curso, Terminada), por defecto (Pendiente)");
             console.log("[5] Agregar Fecha de vencimiento (opcional)");
             console.log("[6] Guardar la tarea (Cuando se guarda la tarea te manda al menú principal)");
             console.log("[0] Volver al menú (Si no se cargan los campos obligatorios no se guardará la tarea)...");
             break;
-        case "Pausa"://Pausa
-            console.log("Presione la tecla [ENTER] para continuar...");
-            break;
-        case "8":
-            console.log("Escriba el titulo o una palabra clave del titulo de tarea a buscar o [ENTER] para volver\n")
-            break;
         case "Leer":
             let a = leer();
             return a;
-        case "10":
-            console.log("El titulo no puede estar vacío.\nVuelva a intentarlo.");
-            break;
-        case "11":
-            console.log("El titulo no puede superar los 100 caracteres.\nVuelva a intentarlo.");
-            break;
-        case "12":
-            console.log("coincidencias encontradas...");
-            break;
         case "13":
             console.log("");
-        case "12":
-            console.log("coincidencias encontradas...");
-            break;
         case "13":
             console.clear();
-            break
-        case "14":
-            console.log(chalk.greenBright("Estas creando una tarea\n"));
-            console.log(`*************************\n1. Asignar titulo.\n2. Asignar descripción.\n3. Asignar Estado.\n4. Asignar dificultad.\n5. Asignar vencimiento.\n6. Guardar Cambios.\n7. Cancelar.`);
-            break;
-        case "15":
-            console.log("ingrese el titulo  de la tarea o [ENTER] para cancelar");
-            break;
-        case "16":
-            console.log(`[] Ingresa el estado o solo [Enter] para dejarlo en default(pendiente):\n([P]endiente) / [E]n curso / [T]erminada / [C]ancelada:`);
-            break;
-        case "17":
-            console.log(`[] Ingresa la descripción o solo [Enter] para cancelar.\n`);
-            break;
-        case "18":
-            console.log("Ingrese el vencimiento o enter para cancelar")
-            console.log(`[] Ingresa el año de vencimiento o solo [Enter] para cancelar:\n`);
-            console.log(`[Ejemplo: 2021]`);
-            break;
-        case "19":
-            console.log("Año ingresado invalido, solo se admiten numeros de 4 digitos sin espacios.\nVuelva a intentarlo.");
-            break;
-        case "20":
-            console.log(`[] Ingresa el mes de vencimiento o solo [Enter] para cancelar:\n`);
-            console.log(`[Ejemplo: 03]`);
-            break;
-        case "21": console.log("mes ingresado invalido");
-            break;
-        case "22":
-            console.log(`[] Ingresa el día de vencimiento o solo [Enter] para cancelar:\n`);
-            console.log(`[Ejemplo: 03]`);
-            break;
-        case "23":
-            console.log("día ingresado invalido");
-            break;
-        case "25":
-            console.log(`[] Ingresa la dificultad o solo [Enter] para cancelar:\nDificultad [F]acil / [M]edio / [D]ificil:`);
             break;
         case "26":
             console.log(chalk.redBright("Cancelado"));
             break;
         case "27":
             console.log("Enter para continuar, cualquier otra tecla para volver al menu");
-            break;
-        case "28":
-            console.log("El titulo no puede estar vacío ni superar los 100 caracteres.\n");
-            break;
-
-
-        case "29": /// Terminadas
-
-            
-            break;
-
-        case "30": //Canceladas
-           
-        case "31": /// Pendientes
-
-        case "50": ///Todas las tareas
-           
             break;
         case "51":
             console.error("Opción inválida");

@@ -43,4 +43,5 @@ export default function subMenuTareas(subMenuOption, aTarea) {
             cl("51"); // Opción inválida
             break;
     }
+    subMenuTareas(subMenuOption,aTarea);
 }
