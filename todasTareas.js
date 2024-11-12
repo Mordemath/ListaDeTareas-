@@ -2,6 +2,7 @@ import mostrarDetalles from './mostrarDetalles.js';
 import { mostrarTareas } from './mostrarDetalles.js';
 import prompt from "prompt-sync";
 import editar from './editarTarea.js';
+import pausa from './pause.js';
 const leer = prompt();
 
 function Encurso(aTarea) {
@@ -67,41 +68,74 @@ function pendientes(aTarea) {
     }
 }
 
-function mostrarTotal(aTarea) {
-    console.log("Todas las Tareas:");
-    aTarea.forEach((atarea, i) => {
-        console.log(`[${i + 1}] Título: ${atarea.titulo}`);
-    });
-    console.log("¿Quieres ver una tarea? (S/N)");
-    let ver = leer("").toUpperCase();
-    ver = control(ver);
-    if (ver === "S") {
-        let i = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
-        mostrarDetalles(aTarea, i);
-        ver = leer("E para modificar y 0 para salir").toUpperCase();
-        ver = control2(ver);
-        if (ver === "E") {
-            return editar(aTarea[i]);
-        }
+export function recorrerArreglo(atarea) {//esta funcin devuelve una copia del array sin el primer elemento
+    let shiftArreglo = atarea.map((tarea, index) => {
+        if (index == 0) { return undefined }
+        return tarea;
+    }).filter(tarea => tarea !== undefined);
+    return shiftArreglo;
+}//si esto no es pureza, ya no se que lo es...
+
+export function imprimirLista(atarea, indice) {//con esta función imprimimos un elemento del array en la primera posición
+    if (atarea.length > 0) {
+        console.log(`[${indice + 1}] Título: ${atarea[0].titulo}`);
+        imprimirLista(recorrerArreglo(atarea), indice + 1);
     }
+    return "0";
+}
+//Entre las dos funciónes de arriba recorremos el array e imprimimos de una forma que nos permite de alguna forma separar la parte de imprimir de la de iterar
+
+function opcionesDeTarea(aTarea, cont) {
+    let arrayTareasAux = aTarea;
+    console.log("Todas las Tareas:");
+    imprimirLista(aTarea, 0);//0 solo es un indice requerido para enumerar tareas, lo pasamos aquí porque es mas comodo para la recursividad que crearlo dentro de la funcion
+    let ver = leer("¿Quieres ver una tarea? (S/N)").toUpperCase();
+    if (control(ver) === false) {//con esto desligamos a la función "control" de imprimir por su cuenta
+        console.error("Opcion invalida");
+        pausa();
+        ver = opcionesDeTarea(aTarea, 1);
+    }
+    if (cont === 1) { return ver };
+    if (ver === "S") {
+        arrayTareasAux = editarTareaOp(aTarea, 0);
+    }
+    return arrayTareasAux;
 }
 
-function control(op) {
-    if (op !== "S" && op !== "N" && op.trim() !== "") {
-        console.error("Ingrese una de las opciones anteriores");
-        op = leer("").toUpperCase();
-        return control(op);
+function editarTareaOp(aTarea, cont) {
+    let arrayAux = aTarea;
+    let i;
+    if (cont == 0) {
+        i = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
+        mostrarDetalles(aTarea, i);//falta un control para el indice que ingresa el user, igual es facil si copiamos los que tenemos++++
     }
-    return op;
+    let ver = leer("E para modificar y 0 para salir").toUpperCase();
+    if (control2(ver) === false) {
+        console.error("Opcion invalida");
+        pausa();
+        ver = editarTareaOp(aTarea, 1);
+    }
+    if (cont === 1) {
+        return ver;
+    }
+    if (ver === "E") {
+        arrayAux = editar(aTarea[i]);
+    }
+    return arrayAux;
 }
+function control(op) {
+    if (op !== "S" && op !== "N" && op.trim() !== "") {//ahora retorna falso si es invalido y true si es valido
+        return false;
+    }
+    return true;
+}
+
 
 function control2(op) {
-    if (op !== "E" && op !== "0" && op.trim() !== "") {
-        console.error("Ingrese una de las opciones anteriores");
-        op = leer("").toUpperCase();
-        return control2(op);
+    if (op !== "E" && op !== "0" && op.trim() !== "") {//ahora retorna falso si es invalido y true si es valido
+        return false;
     }
-    return op;
+    return true;
 }
 
-export { Encurso, mostrarTotal, terminadas, pendientes };
+export { Encurso, opcionesDeTarea, terminadas, pendientes };

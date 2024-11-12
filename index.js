@@ -4,7 +4,6 @@ import pausa from './pause.js';
 import buscarTarea from './buscarTareas.js';
 import Tarea from './tarea.js';
 import { AsignarAtributos } from './CrearAtributo.js';
-import { Encurso, mostrarTotal, terminadas, pendientes } from './todasTareas.js';
 import subMenuTareas from './mostrarTareasMenu.js'
 
 
