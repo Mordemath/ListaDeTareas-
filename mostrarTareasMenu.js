@@ -4,6 +4,7 @@ export default function subMenuTareas(subMenuOption, aTarea) {
     let auxiliarArray = [];
     switch (subMenuOption) {
         case "1": // Mostrar todas las tareas
+        
             auxiliarArray = opcionesDeTarea(aTarea, 0);
 
             if (auxiliarArray) {
@@ -37,7 +38,7 @@ export default function subMenuTareas(subMenuOption, aTarea) {
                 return aTarea;
             }
         case "0":
-            return;
+            return aTarea;
         default:
             cl("51"); // Opción inválida
             break;

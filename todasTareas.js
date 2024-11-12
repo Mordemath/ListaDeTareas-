@@ -7,65 +7,26 @@ const leer = prompt();
 
 function Encurso(aTarea) {
     const estadoDeseado = "En curso";
-    const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-    console.log("Tareas en estado En Curso:");
-    tareasFiltradas.forEach((tarea, i) => {
-        console.log(`[${i + 1}] Título: ${tarea.titulo}`);
-    });
-    console.log("¿Quieres ver una tarea? (S/N)");
-    let ver = leer("").toUpperCase();
-    ver = control(ver);
-    if (ver === "S") {
-        let i = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
-        mostrarDetalles(aTarea, i);
-        ver = leer("E para modificar y 0 para salir").toUpperCase();
-        ver = control2(ver);
-        if (ver === "E") {
-            return editar(aTarea[i]);
-        }
-    }
+    let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
+    console.log("Filtrado por estado [E]n Curso:");
+    tareasFiltradas = opcionesDeTarea(tareasFiltradas, 0);
+    return tareasFiltradas;
 }
 
 function terminadas(aTarea) {
     const estadoDeseado = "Terminada";
-    const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-    console.log("Tareas Terminadas:");
-    tareasFiltradas.forEach((tarea, i) => {
-        console.log(`[${i + 1}] Título: ${tarea.titulo}`);
-    });
-    console.log("¿Quieres ver una tarea? (S/N)");
-    let ver = leer("").toUpperCase();
-    ver = control(ver);
-    if (ver === "S") {
-        let i = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
-        mostrarDetalles(aTarea, i);
-        ver = leer("E para modificar y 0 para salir").toUpperCase();
-        ver = control2(ver);
-        if (ver === "E") {
-            return editar(aTarea[i]);
-        }
-    }
+    let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
+    console.log("Filtrado por [T]erminadas:");
+    tareasFiltradas = opcionesDeTarea(tareasFiltradas, 0);
+    return tareasFiltradas;
 }
 
 function pendientes(aTarea) {
     const estadoDeseado = "Pendiente";
-    const tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
-    console.log("Tareas Pendientes:");
-    tareasFiltradas.forEach((atarea, i) => {
-        console.log(`[${i + 1}] Título: ${atarea.titulo}`);
-    });
-    console.log("¿Quieres ver una tarea? (S/N)");
-    let ver = leer("").toUpperCase();
-    ver = control(ver);
-    if (ver === "S") {
-        let i = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
-        mostrarDetalles(aTarea, i);
-        ver = leer("E para modificar y 0 para salir").toUpperCase();
-        ver = control2(ver);
-        if (ver === "E") {
-            return editar(aTarea[i]);
-        }
-    }
+    let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
+    console.log("Filtrado por [P]endientes:");
+    tareasFiltradas = opcionesDeTarea(tareasFiltradas, 0);
+    return tareasFiltradas;
 }
 
 export function recorrerArreglo(atarea) {//esta funcin devuelve una copia del array sin el primer elemento

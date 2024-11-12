@@ -145,7 +145,7 @@ export function edicionMenu(tarea) {
     console.clear()
 
     // Llama de nuevo al menú para continuar editando
-    edicionMenu(tarea)
+    edicionMenu(tarea);
 }
 
 function validarTitulo(nuevoTitulo) {
