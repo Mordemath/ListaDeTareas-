@@ -7,10 +7,10 @@ import { controlArreglo, control, control2} from './controles.js';
 const leer = prompt();
 
 function Encurso(aTarea) {
-    const estadoDeseado = "En curso";
+    const estadoDeseado = "En Curso";
     let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
     if (!(controlArreglo(tareasFiltradas))) {
-        console.log("No hay tareas en curso");
+        console.log("No se cargaron las tareas en Curso");
         return aTarea;
     }
     console.log("Filtrado por estado [E]n Curso:");
@@ -42,11 +42,11 @@ function pendientes(aTarea) {
     return tareasFiltradas;
 }
 
-export function recorrerArreglo(atarea) {//esta funcin devuelve una copia del array sin el primer elemento
+export function recorrerArreglo(atarea) {//Esta funcion devuelve una copia del array sin el primer elemento 
     let shiftArreglo = atarea.map((tarea, index) => {
-        if (index == 0) { return undefined }
+        if (index == 0) { return undefined }//marcamos el primer elmento
         return tarea;
-    }).filter(tarea => tarea !== undefined);
+    }).filter(tarea => tarea !== undefined);//Filter devuelve un arreglo sin el elemento marcado
     return shiftArreglo;
 }//si esto no es pureza, ya no se que lo es...
 
@@ -67,13 +67,13 @@ function opcionesDeTarea(aTarea, cont) {
     if (control(ver) === false) {//con esto desligamos a la función "control" de imprimir por su cuenta
         console.error("Opcion invalida");
         pausa();
-        ver = opcionesDeTarea(aTarea, 1);
+        ver = opcionesDeTarea(aTarea, 1);//Recursividad en caso de que falle 
     }
-    if (cont === 1) { return ver };
+    if (cont === 1) { return ver };//lo devuelve a la linea 70 y continua
     if (ver === "S") {
-        arrayTareasAux = editarTareaOp(aTarea, 0);
+        arrayTareasAux = editarTareaOp(aTarea, 0);//Se llama a la funcion editar tarea
     }
-    return arrayTareasAux;
+    return arrayTareasAux;//retorna el auxilar con las tareas
 }
 
 function editarTareaOp(aTarea, cont) {

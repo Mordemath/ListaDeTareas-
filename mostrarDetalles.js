@@ -32,5 +32,4 @@ export function mostrarTareas(arregloTarea, estadoDeseado)
         let tareasFiltradas = arregloTarea.filter(tarea => tarea.estado === estadoDeseado);
         return tareasFiltradas;
     }
-    
 }

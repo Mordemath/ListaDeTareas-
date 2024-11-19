@@ -6,15 +6,15 @@ import Tarea from './tarea.js';
 import { AsignarAtributos } from './CrearAtributo.js';
 import subMenuTareas from './mostrarTareasMenu.js'
 
-
+//inciador del main con arreglo aTarea
 function init() {
     const aTarea = [];
     main(aTarea);
 }
-
+//Main
 function main(aTarea) {
     let op;
-    let auxiliarArray=[];
+    let auxiliarArray = [];//Arreglo auxiliar
     cl("Menu"); // Mostrar el menú principal
     op = cl("Leer"); // Capturar la opción seleccionada
     switch (op) {
@@ -24,10 +24,9 @@ function main(aTarea) {
                 break; // Terminar el caso
             }
             cl("Menu_Tareas"); // Menú de tareas
-            
+
             let subMenuOption = cl("Leer"); // Capturar opción del submenú
-            aTarea = subMenuTareas(subMenuOption,aTarea);
-            console.log("Se realizo un cambio");
+            aTarea = subMenuTareas(subMenuOption, aTarea); //Devuelve el arreglo si es modificado
             break;
         case "2":
             if (aTarea.length === 0) {
@@ -43,22 +42,20 @@ function main(aTarea) {
         case "3":
             const tarea = new Tarea();
             aTarea.push(AsignarAtributos(tarea));
-            if (aTarea[(aTarea.length) - 1 ] == undefined || aTarea[(aTarea.length) - 1] == null) {
+            if (aTarea[(aTarea.length) - 1] == undefined || aTarea[(aTarea.length) - 1] == null) {
                 aTarea.pop();
             }
             break;
         case "0":
             return;
         default:
-            cl("51"); // Opción inválida
+            cl("OpcionInvalida"); // Opción inválida
             break;
     }
     cl("Pausa");
     pausa();
     console.clear();
-
     return main(aTarea); // Llamar de nuevo a main para reiniciar el flujo
-
 }
 init();
 main();

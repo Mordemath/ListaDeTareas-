@@ -122,17 +122,17 @@ export function AsignarAtributos(tareas) {
             if (titulo !== null && titulo !== false && titulo !== undefined) {
                 if (dificultad === "----" || dificultad === undefined) {
                     dificultad = CrearDificultad("");
-                }
+                };
                 if (estado === "----" || estado === undefined) {
                     estado = CrearEstado("");
-                }
+                };
                 if (vencimiento === undefined) {
                     vencimiento = "----";
-                }
+                };
                 if (descripcion === undefined) {
                     descripcion = "----";
-                }
-                creacion = new Date();
+                };
+                creacion = fechaActual;
                 console.log("Tarea agregada correctamente");
                 const tarea = new Tarea(titulo, estado, descripcion, vencimiento, dificultad, "----", creacion);
                 console.log(tarea);

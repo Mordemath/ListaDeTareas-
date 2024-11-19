@@ -5,7 +5,7 @@ import editar from './editarTarea.js';
 import { controlArreglo } from './controles.js';
 import { imprimirLista } from './todasTareas.js';
 const leer = prompt();
-
+/// Funcion filtrar busca tareas dentro de una lista basándose en una palabra clave.
 function filtrarTareas(tareas, palabraClave) {
     let resultados = [];
     tareas.forEach((tarea) => {
@@ -15,7 +15,7 @@ function filtrarTareas(tareas, palabraClave) {
     });
     return resultados;
 }
-
+// Devuelve true si el usuario responde "S"; de lo contrario, devuelve false
 function deseaVerTarea(ver1) {
     let ver = leer("¿Desea ver alguna tarea? s/n: ").toUpperCase();
     if (ver !== "S" && ver !== "N") {
@@ -23,16 +23,16 @@ function deseaVerTarea(ver1) {
     }
     return ver === "S";
 }
-
+//  Devuelve el índice numérico correspondiente.
 function obtenerIndice() {
     let indice = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
     return indice;
 }
-
+//Devuelve true si el índice es válido; de lo contrario, devuelve false.
 function esIndiceValido(indice, resultados) {
     return !(isNaN(indice) || indice < 0 || indice >= resultados.length);
 }
-
+/// Llama a editar si se selecciona "E". Si no, no hace nada
 function manejarEleccion(indice, resultados) {
     let elegir = leer("Ingrese E para editar o 0 para volver: ").toUpperCase();
     if (elegir === "E") {

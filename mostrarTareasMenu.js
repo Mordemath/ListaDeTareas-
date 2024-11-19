@@ -7,41 +7,40 @@ export default function subMenuTareas(subMenuOption, aTarea) {
         
             auxiliarArray = opcionesDeTarea(aTarea, 0);
 
-            if (auxiliarArray) {
+            if (auxiliarArray) {//En caso de que se modifique retorna la tarea modificada
                 return auxiliarArray;
             }
-            else {
+            else{
                 return aTarea;
             }
         case "2":// Mostrar tareas pendientes
             auxiliarArray = pendientes(aTarea);
-            if (auxiliarArray) {
+            if (auxiliarArray) {//En caso de que se modifique retorna la tarea modificada
                 return auxiliarArray;
             }
-            else {
+            else{
                 return aTarea;
             }
         case "3":// Mostrar tareas en curso
             auxiliarArray = Encurso(aTarea);
-            if (auxiliarArray) {
+            if (auxiliarArray) {//En caso de que se modifique retorna la tarea modificada
                 return auxiliarArray;
             }
-            else {
+            else{
                 return aTarea;
             }
         case "4": // Mostrar tareas terminadas
             auxiliarArray = terminadas(aTarea);
-            if (auxiliarArray) {
+            if (auxiliarArray) {//En caso de que se modifique retorna la tarea modificada
                 return auxiliarArray;
             }
-            else {
+            else{
                 return aTarea;
             }
         case "0":
             return aTarea;
         default:
-            cl("51"); // Opción inválida
-            break;
+            cl("OpcionInvalida"); // Opción inválida
+            return aTarea;
     }
-    subMenuTareas(subMenuOption,aTarea);
 }

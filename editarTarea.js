@@ -21,17 +21,12 @@ function editarDescripcion(tarea, opciones) {
     }
 }
 
-function editarEstado(tarea, opciones) {
+function editarEstado(tarea, opciones) {//edita el estado
     const estadosValidos = {
         "P": "Pendiente",
         "E": "Encurso",
         "T": "Terminada",
-        "C": "Cancelada",
     };
-
-    if (opciones.estado === "C") {
-        return "Cancelada"; // retorna la cadena en lugar de un objeto
-    }
 
     if (estadosValidos[opciones.estado] !== undefined) {
         return estadosValidos[opciones.estado]; // asigna el nuevo estado
@@ -40,7 +35,7 @@ function editarEstado(tarea, opciones) {
     }
 }
 
-function editarDificultad(tarea, opciones) {
+function editarDificultad(tarea, opciones) {//Edita la dificultad
     const dificultades = {
         "1": "🌑🌑🌑",
         "2": "🌕🌕🌑",
@@ -50,7 +45,7 @@ function editarDificultad(tarea, opciones) {
     return dificultades[opciones.dificultad] || tarea.dificultad;
 }
 
-function editarVencimiento(tarea, opciones) {
+function editarVencimiento(tarea, opciones) { //Edita el vencimiento
     if (opciones.vencimiento.trim() === "") {
         return tarea.vencimiento
     } else {
@@ -58,7 +53,7 @@ function editarVencimiento(tarea, opciones) {
     }
 }
 
-export function editarTarea(tarea, opciones) {
+export function editarTarea(tarea, opciones) {//Funcion que edita la tarea segun lo que ingresa en opciones
     let nuevaTarea = tarea;
     if (opciones.titulo !== undefined) {
         nuevaTarea.titulo = editarTitulo(tarea, opciones);
@@ -78,20 +73,19 @@ export function editarTarea(tarea, opciones) {
     return nuevaTarea;
 }
 
-export function edicionMenu(tarea) {
+export function edicionMenu(tarea,count) {//Menu de editar 
     const leer = prompt();
     console.log("\n-Si deseas mantener los valores de un atributo, déjalo en blanco.");
     console.log("[1] Título (El título no se puede dejar en blanco)");
     console.log("[2] Descripción");
-    console.log("[3] Estado ([P]endiente, [E]n curso, [T]erminada, [C]ancelada).");
+    console.log("[3] Estado ([P]endiente, [E]n curso, [T]erminada).");
     console.log("[4] Dificultad ([1] Fácil, [2] Media, [3] Difícil).");
     console.log("[5] Vencimiento");
     console.log("[0] Volver al menú");
     const opcion = leer("¿Qué desea editar?: ");
     let bandera = false;
     let opciones = {};
-    let ano,mes,dia;
-
+    let ano, mes, dia;
     if (opcion === "1") {
         const nuevoTitulo = leer("Ingrese el nuevo título: ");
         const titulov = validarTitulo(nuevoTitulo);
@@ -101,6 +95,7 @@ export function edicionMenu(tarea) {
         else {
             opciones.titulo = nuevoTitulo;
             bandera = true;
+            count=1;
         }
     }
 
@@ -113,18 +108,20 @@ export function edicionMenu(tarea) {
         else {
             opciones.descripcion = nuevaDescripcion;
             bandera = true;
+            count=1;
         }
     }
 
     if (opcion === "3") {
         const estado = leer("Ingrese una opción para el estado: ").toUpperCase();
         const estav = validarEstado(estado);
-        if(estav===false){
+        if (estav === false) {
             console.error("El Estado que ingreso es invalido");
         }
-        else{
+        else {
             opciones.estado = estado;
             bandera = true;
+            count=1;
         }
     }
 
@@ -134,9 +131,10 @@ export function edicionMenu(tarea) {
         if (difv === false) {
             console.error("la Dificultad que ingreso es invalida");
         }
-        else{
+        else {
             opciones.dificultad = dificultad;
             bandera = true;
+            count=1;
         }
     }
 
@@ -148,14 +146,18 @@ export function edicionMenu(tarea) {
         if (nuevoVencimiento === false) {
             console.error("valor invalido");
         }
-        else{
+        else {
             console.log("Vencimiento agregado");
             opciones.vencimiento = nuevoVencimiento;
             bandera = true;
+            count=1;
         }
     }
 
     if (opcion === "0") {
+        if(count===0){
+            return null;
+        }
         console.log("Volviendo...");
         return tarea;
     }
@@ -165,8 +167,8 @@ export function edicionMenu(tarea) {
         return // Salir si hay un error
     }
 
-    if (bandera === true) {
-        tarea.ultimaEd = new Date(); // Actualiza la tarea usando las opciones recopiladas
+    if (bandera === true) { // Si la bandera es true entonces edita la tarea
+        tarea.ultimaEd = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' }); // Actualiza la tarea usando las opciones recopiladas
         tarea = editarTarea(tarea, opciones);
 
         console.log("La tarea se ha guardado.");
@@ -179,5 +181,5 @@ export function edicionMenu(tarea) {
     edicionMenu(tarea);
 }
 export default function editar(aTarea) {
-    return edicionMenu(aTarea);
+    return edicionMenu(aTarea,0);
 }

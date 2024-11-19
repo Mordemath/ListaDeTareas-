@@ -48,18 +48,7 @@ export default function cl(indice) {
         case "Leer":
             let a = leer();
             return a;
-        case "13":
-            console.log("");
-        case "13":
-            console.clear();
-            break;
-        case "26":
-            console.log(chalk.redBright("Cancelado"));
-            break;
-        case "27":
-            console.log("Enter para continuar, cualquier otra tecla para volver al menu");
-            break;
-        case "51":
+        case "OpcionInvalida":
             console.error("Opción inválida");
             break;
         case "Error":
