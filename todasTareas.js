@@ -5,7 +5,7 @@ import editar from './editarTarea.js';
 import pausa from './pause.js';
 import { controlArreglo, control, control2} from './controles.js';
 const leer = prompt();
-
+// yo
 function Encurso(aTarea) {
     const estadoDeseado = "En Curso";
     let tareasFiltradas = mostrarTareas(aTarea, estadoDeseado);
