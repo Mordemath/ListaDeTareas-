@@ -4,48 +4,51 @@ import mostrarDetalles from './mostrarDetalles.js';
 import editar from './editarTarea.js';
 import { controlArreglo } from './controles.js';
 import { imprimirLista } from './todasTareas.js';
-const leer = prompt();
 /// Funcion filtrar busca tareas dentro de una lista basándose en una palabra clave.
 function filtrarTareas(tareas, palabraClave) {
     let resultados = [];
     tareas.forEach((tarea) => {
-        if (tarea.titulo.includes(palabraClave)) {
-            resultados.push(tarea);
+        if (tarea.titulo.includes(palabraClave)) {//Retorna true si encuentra las subcadena del titulo
+            resultados.push(tarea); // Cada vez que encuentra una semejanza o subcadena realiza push en un nuevo arreglo auxiliar
         }
     });
     return resultados;
 }
 // Devuelve true si el usuario responde "S"; de lo contrario, devuelve false
-function deseaVerTarea(ver1) {
+function deseaVerTarea() {
+    const leer = prompt();
     let ver = leer("¿Desea ver alguna tarea? s/n: ").toUpperCase();
     if (ver !== "S" && ver !== "N") {
         console.log("Opcion invalida.");
     }
-    return ver === "S";
+    return ver === "S"; // Retorna a buscar tareas
 }
 //  Devuelve el índice numérico correspondiente.
 function obtenerIndice() {
-    let indice = parseInt(leer("Ingrese el número de la tarea: ")) - 1;
-    return indice;
+    const leer = prompt();
+    let indice = parseInt(leer("Ingrese el número de la tarea: ")) - 1;//Convierte la cadena en entero y le resta -1 para que empiece en 0
+    return indice; // Retorna a buscar tareas
 }
 //Devuelve true si el índice es válido; de lo contrario, devuelve false.
 function esIndiceValido(indice, resultados) {
-    return !(isNaN(indice) || indice < 0 || indice >= resultados.length);
+    return !(isNaN(indice) || indice < 0 || indice >= resultados.length);//Retorna false en caso de que la condicion se cumpla;
 }
 /// Llama a editar si se selecciona "E". Si no, no hace nada
 function manejarEleccion(indice, resultados) {
+    const leer = prompt();
     let elegir = leer("Ingrese E para editar o 0 para volver: ").toUpperCase();
     if (elegir === "E") {
         console.log("Ingresando al menú de editar tareas...");
         console.log("Estás editando la tarea: " + resultados[indice].titulo);
-        return editar(resultados[indice]);
+        return editar(resultados[indice]); //Retorna el arreglo resultado modificado
     } else if (elegir !== "0") {
         console.error("Tiene que ingresar E o 0.");
         pause();
     }
 }
-
-export default function buscarTarea(tareas) {
+// Puede devolver el resultado de la función editar. Puede terminar sin devolver nada si no se elige editar.
+export default function buscarTarea(tareas) {//funcion principal de buscar tarea
+    const leer = prompt();
     let palabraClave = leer("Ingrese una palabra o conjunto de palabras para buscar en los títulos de las tareas: ");
     let resultados = filtrarTareas(tareas, palabraClave);
     if(controlArreglo(resultados)){
